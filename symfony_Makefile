@@ -1,0 +1,44 @@
+check:
+	php vendor/bin/phpstan analyse
+
+csfix:
+	php vendor/bin/php-cs-fixer fix
+
+start:
+	docker-compose up
+
+stop:
+	docker-compose down
+
+restart: stop start
+
+startsrv:
+	symfony server:start
+
+startdump:
+	php bin/console server:dump
+
+stopsrv:
+	symfony server:stop
+
+restartsrv: stopsrv startsrv
+
+update:
+	composer install
+
+
+# Manipulation BDD #
+
+# replace php bin/console = $(EXEC) $(CONSOLE) WHEN docke OK
+entity:
+	php bin/console make:entity
+
+migration:
+	php bin/console make:migration
+
+migrate:
+	php bin/console doctrine:migrations:migrate -n
+
+
+admin.crud:
+	php bin/console make:admin:crud
