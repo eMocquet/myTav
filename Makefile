@@ -23,10 +23,10 @@ csfix:
 	vendor/bin/php-cs-fixer fix
 
 start:
-	$(FIG) up -d
+	$(FIG) --env-file .env --env-file .env.local up -d
 
 stop:
-	$(FIG) down
+	$(FIG) --env-file .env --env-file .env.local down
 
 restart: stop start
 

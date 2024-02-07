@@ -15,13 +15,13 @@ services:
     volumes:
       - .:/srv
     ports:
-      - "8000:80"
-
+      # - "8000:80"
+      - ${PORT_NGINX}
   db:
     image: mariadb:10
     environment:
-      MARIADB_ROOT_PASSWORD: pass
-      MARIADB_DATABASE: advent_api
+      MARIADB_ROOT_PASSWORD: ${MARIA_PASS}
+      MARIADB_DATABASE: ${MARIA_DB}
     volumes:
       - db-data:/var/lib/mysql
     ports:
